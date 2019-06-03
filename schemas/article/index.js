@@ -1,3 +1,37 @@
+export const articleAuthor = {
+  name: "article.author",
+  type: "object",
+  title: "Article Author",
+  fields: [
+    {
+      type: "reference",
+      name: "person",
+      title: "Person",
+      to: [{ type: "person" }]
+    },
+    {
+      type: "string",
+      name: "role",
+      title: "Role"
+    }
+  ],
+  preview: {
+    select: {
+      firstName: "person.firstName",
+      lastName: "person.lastName",
+      role: "role",
+      media: "person.image"
+    },
+    prepare({ firstName, lastName, media, role }) {
+      return {
+        title: [firstName, lastName].filter(Boolean).join(" "),
+        subtitle: role,
+        media
+      };
+    }
+  }
+};
+
 export const articleExcerpt = {
   name: "article.excerpt",
   type: "array",
@@ -77,7 +111,8 @@ export const articleBody = {
         // preference or highlighting by editors.
         decorators: [
           { title: "Strong", value: "strong" },
-          { title: "Emphasis", value: "em" }
+          { title: "Emphasis", value: "em" },
+          { title: "Code", value: "code" }
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
@@ -96,14 +131,18 @@ export const articleBody = {
         ]
       }
       // of: [{ type: "authorReference" }]
-    }
+    },
     // You can add additional types here. Note that you can't use
     // primitive types such as 'string' and 'number' in the same array
     // as a block type.
     // {
     //   type: "mainImage",
     //   options: { hotspot: true }
-    // }
+    // },
+    {
+      title: "Code block",
+      type: "code"
+    }
   ]
 };
 
@@ -128,6 +167,12 @@ export const article = {
         source: "title",
         maxLength: 96
       }
+    },
+    {
+      type: "array",
+      name: "authors",
+      title: "Authors",
+      of: [{ type: "article.author" }]
     },
     {
       name: "publishedAt",
