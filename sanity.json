@@ -12,15 +12,22 @@
     "@sanity/components",
     "@sanity/default-layout",
     "@sanity/default-login",
+    "@sanity/dashboard",
     "@sanity/desk-tool",
     "@sanity/color-input",
-    "vision",
-    "@sanity/code-input"
+    "@sanity/code-input",
+    "dashboard-widget-document-list",
+    "dashboard-widget-structure-menu",
+    "vision"
   ],
   "parts": [
     {
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema.js"
+    },
+    {
+      "implements": "part:@sanity/dashboard/config",
+      "path": "./dashboardConfig.js"
     },
     {
       "name": "part:@sanity/desk-tool/structure",
