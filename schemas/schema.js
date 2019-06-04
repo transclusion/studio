@@ -1,27 +1,17 @@
 import createSchema from "part:@sanity/base/schema-creator";
 import schemaTypes from "all:part:@sanity/base/schema-type";
 
-import { seo } from "./_global/seo";
-import {
-  article,
-  articleAuthor,
-  articleBody,
-  articleExcerpt,
-  articleMetadata
-} from "./article";
-import { person } from "./person";
-import { settings } from "./settings";
+import * as _global from "./_global";
+import * as article from "./article";
+import * as person from "./person";
+import * as settings from "./settings";
 
 export default createSchema({
-  name: "simplestore",
+  name: "transclusion",
   types: schemaTypes.concat([
-    article,
-    articleAuthor,
-    articleBody,
-    articleExcerpt,
-    articleMetadata,
-    person,
-    seo,
-    settings
+    ...Object.values(_global),
+    ...Object.values(article),
+    ...Object.values(person),
+    ...Object.values(settings)
   ])
 });

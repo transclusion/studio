@@ -25,12 +25,5 @@ export const settings = {
       type: "seo",
       title: "SEO"
     }
-    // {
-    //   name: "author",
-    //   type: "reference",
-    //   description: "Publish an author and set a reference to them here.",
-    //   title: "Author",
-    //   to: [{ type: "author" }]
-    // }
   ]
 };
