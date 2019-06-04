@@ -8,7 +8,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "sanity start",
-    "test": "sanity check"
+    "deploy": "now",
+    "test": "sanity check",
+    "now-build": "sanity build"
   },
   "keywords": [
     "sanity"
@@ -27,5 +29,7 @@
     "react-dom": "^16.2",
     "sanity-plugin-vision": "^2.0.7"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@sanity/cli": "^0.140.30"
+  }
 }
