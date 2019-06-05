@@ -17,6 +17,7 @@
     "@sanity/color-input",
     "@sanity/code-input",
     "dashboard-widget-document-list",
+    "dashboard-widget-ga",
     "dashboard-widget-structure-menu",
     "vision"
   ],

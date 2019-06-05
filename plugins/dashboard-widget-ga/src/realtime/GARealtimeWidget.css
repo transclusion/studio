@@ -1,0 +1,38 @@
+@import 'part:@sanity/base/theme/variables-style';
+
+.root {
+  composes: container from "part:@sanity/dashboard/widget-styles";
+}
+
+.header {
+  composes: header from "part:@sanity/dashboard/widget-styles";
+}
+
+.title {
+  composes: title from "part:@sanity/dashboard/widget-styles";
+}
+
+.content {
+  border-top: 1px solid var(--hairline-color);
+  padding: 1em;
+  /* text-align: center; */
+
+  @nest & table {
+    width: 100%;
+    border-collapse: collapse;
+
+    @nest & td, & th {
+      background: #fff;
+      border: 1px solid var(--hairline-color);
+      padding: 0.5em;
+    }
+
+    @nest & thead th {
+      text-align: left;
+    }
+
+    @nest & tbody td:last-child {
+      text-align: right;
+    }
+  }
+}

@@ -2,8 +2,12 @@
   "version": 2,
   "name": "studio",
   "alias": ["studio.transclusion.org"],
-  "builds": [{ "src": "package.json", "use": "@now/static-build" }],
+  "builds": [
+    { "src": "package.json", "use": "@now/static-build" },
+    { "src": "api/google/oauth/*.js", "use": "@now/node" }
+  ],
   "routes": [
+    { "src": "^/api/(.*)", "dest": "/api/$1.js" },
     { "src": "^/static/(.*)", "dest": "/static/$1" },
     { "src": "^/(.*)", "dest": "/index.html" }
   ]

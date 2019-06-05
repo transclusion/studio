@@ -5,9 +5,9 @@
   },
   "parts": [
     {
-      "name": "part:@sanity/dashboard/widget/structure-menu",
+      "name": "part:@sanity/dashboard/widget/ga/realtime",
       "implements": "part:@sanity/dashboard/widget",
-      "path": "widget.js"
+      "path": "realtime/widget.js"
     }
   ]
 }

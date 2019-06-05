@@ -1,8 +1,19 @@
+const GA_BASE_URL =
+  location.origin === "http://localhost:3333"
+    ? "http://localhost:3000"
+    : "https://studio.transclusion.org";
+
 export default {
   widgets: [
     {
-      name: "structure-menu"
+      name: "ga/realtime",
+      options: {
+        profileId: "ga:196245173",
+        signinUrl: `${GA_BASE_URL}/api/google/oauth/signin`,
+        tokensUrl: `${GA_BASE_URL}/api/google/oauth/tokens`
+      }
     },
+    { name: "structure-menu" },
     {
       name: "project-info",
       options: {
