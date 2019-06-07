@@ -1,17 +1,20 @@
+import { createEventHandler } from "react-props-stream";
 import { combineLatest, from, of, timer } from "rxjs";
 import {
   distinctUntilChanged,
   map,
   publishReplay,
   refCount,
-  switchMap
+  startWith,
+  switchMap,
+  tap
 } from "rxjs/operators";
 
 const POLL_FREQUENCY = 20000; // every 20 seconds
 
-function getTokens$(tokensUrl$) {
-  return tokensUrl$.pipe(
-    switchMap(tokensUrl =>
+function getTokens$(tokensUrl$, loadEvent$) {
+  return combineLatest(tokensUrl$, loadEvent$).pipe(
+    switchMap(([tokensUrl]) =>
       from(
         fetch(tokensUrl, { credentials: "include" })
           .then(res => res.json())
@@ -64,6 +67,7 @@ function getReport$(tokens$, profileId$) {
 }
 
 export function toPropsStream(props$) {
+  const [signinClose$, onSigninClose] = createEventHandler();
   const profileId$ = props$.pipe(
     map(props => props.profileId),
     distinctUntilChanged()
@@ -72,7 +76,7 @@ export function toPropsStream(props$) {
     map(props => props.tokensUrl),
     distinctUntilChanged()
   );
-  const tokens$ = getTokens$(tokensUrl$);
+  const tokens$ = getTokens$(tokensUrl$, signinClose$.pipe(startWith(null)));
   const report$ = getReport$(tokens$, profileId$);
 
   return combineLatest(props$, tokens$, report$).pipe(
@@ -80,9 +84,13 @@ export function toPropsStream(props$) {
       return {
         errors: [tokens.error, report.error].filter(Boolean),
         isLoggedIn: Boolean(tokens.data),
+        onSigninClose: () => onSigninClose(null),
         report: report.data,
         signinUrl: props.signinUrl
       };
+    }),
+    startWith({
+      isLoading: true
     })
   );
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./GARealtimeWidget.css";
+import { openCenteredPopup } from "./helpers";
 
 const COLUMN_TITLES = {
   "rt:userType": "User Type",
@@ -15,10 +16,23 @@ const ROW_VALUES = {
 };
 
 function GARealtimeWidget(props) {
+  const onSigninClick = evt => {
+    evt.preventDefault();
+    openCenteredPopup(
+      evt.target.href,
+      { width: 600, height: 620 },
+      props.onSigninClose
+    );
+  };
+
+  if (props.isLoading) {
+    return <div>Loading...</div>;
+  }
+
   if (!props.isLoggedIn) {
     return (
       <div>
-        <a href={props.signinUrl} target="_blank">
+        <a href={props.signinUrl} target="_blank" onClick={onSigninClick}>
           Sign in
         </a>
       </div>

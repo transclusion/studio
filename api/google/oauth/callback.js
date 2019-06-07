@@ -23,7 +23,14 @@ module.exports = async (req, res) => {
     );
     res.setHeader("Set-Cookie", cookies);
     res.writeHead(200, { "Content-Type": "text/html" });
-    res.end("close window");
+    res.end(
+      `<script>
+window.close();
+// window.onload = function () {
+//  window.opener && window.opener.postMessage('close');
+// };
+</script>`
+    );
   } catch (err) {
     res.end(JSON.stringify({ message: err.message }));
   }
