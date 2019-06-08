@@ -1,6 +1,8 @@
-const { createAuthURL } = require("./_helpers");
+const {createOauthClient, createAuthURL, getOrigin} = require('./_helpers')
 
-module.exports = (_, res) => {
-  res.writeHead(302, { location: createAuthURL() });
-  res.end();
-};
+module.exports = (req, res) => {
+  const oauthClient = createOauthClient(getOrigin(req))
+
+  res.writeHead(302, {location: createAuthURL(oauthClient)})
+  res.end()
+}

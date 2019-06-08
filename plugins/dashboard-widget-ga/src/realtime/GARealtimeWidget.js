@@ -1,51 +1,50 @@
-import React from "react";
-import styles from "./GARealtimeWidget.css";
-import { openCenteredPopup } from "./helpers";
+import React from 'react'
+import styles from './GARealtimeWidget.css'
+import {openCenteredPopup} from './helpers'
 
 const COLUMN_TITLES = {
-  "rt:userType": "User Type",
-  "rt:deviceCategory": "Device Category",
-  "rt:activeUsers": "Active Users"
-};
+  'rt:userType': 'User Type',
+  'rt:deviceCategory': 'Device Category',
+  'rt:activeUsers': 'Active Users'
+}
 
 const ROW_VALUES = {
-  NEW: "new",
-  RETURNING: "returning",
-  MOBILE: "mobile",
-  DESKTOP: "desktop"
-};
+  NEW: 'new',
+  RETURNING: 'returning',
+  MOBILE: 'mobile',
+  DESKTOP: 'desktop'
+}
 
-function GARealtimeWidget(props) {
-  const onSigninClick = evt => {
-    evt.preventDefault();
-    openCenteredPopup(
-      evt.target.href,
-      { width: 600, height: 620 },
-      props.onSigninClose
-    );
-  };
+function GARealtimeWidget (props) {
+  const onOpenPopup = evt => {
+    evt.preventDefault()
+    openCenteredPopup(evt.target.href, {width: 600, height: 620}, props.onReload)
+  }
 
   if (props.isLoading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   if (!props.isLoggedIn) {
     return (
       <div>
-        <a href={props.signinUrl} target="_blank" onClick={onSigninClick}>
+        <a href={props.signinUrl} target='_blank' onClick={onOpenPopup}>
           Sign in
         </a>
       </div>
-    );
+    )
   }
 
-  const headers = props.report && props.report.columnHeaders;
-  const rows = props.report && props.report.rows;
+  const headers = props.report && props.report.columnHeaders
+  const rows = props.report && props.report.rows
 
   return (
     <div className={styles.root}>
       <div className={styles.header}>
         <h3 className={styles.title}>Realtime analytics</h3>
+        <a href={props.signoutUrl} target='_blank' onClick={onOpenPopup}>
+          Sign out
+        </a>
       </div>
 
       {props.report && (
@@ -59,9 +58,7 @@ function GARealtimeWidget(props) {
                 <thead>
                   <tr>
                     {headers.map((h, idx) => (
-                      <th key={String(idx)}>
-                        {COLUMN_TITLES[h.name] || h.name}
-                      </th>
+                      <th key={String(idx)}>{COLUMN_TITLES[h.name] || h.name}</th>
                     ))}
                   </tr>
                 </thead>
@@ -80,7 +77,7 @@ function GARealtimeWidget(props) {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default GARealtimeWidget;
+export default GARealtimeWidget

@@ -3,8 +3,8 @@
   "name": "studio",
   "alias": ["studio.transclusion.org"],
   "builds": [
-    { "src": "package.json", "use": "@now/static-build" },
-    { "src": "api/google/oauth/*.js", "use": "@now/node" }
+    { "src": "api/google/oauth/*.js", "use": "@now/node" },
+    { "src": "package.json", "use": "@now/static-build" }
   ],
   "routes": [
     { "src": "^/api/(.*)", "dest": "/api/$1.js" },

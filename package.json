@@ -7,16 +7,21 @@
   "author": "Marius Lundgård <studio@mariuslundgard.com>",
   "license": "MIT",
   "scripts": {
+    "build": "NODE_ENV=production sanity build",
     "dev": "sanity start",
-    "deploy": "now -e GOOGLE_OAUTH_CLIENT_ID=@google-oauth-client-id -e GOOGLE_OAUTH_CLIENT_SECRET=@google-oauth-client-secret -e ORIGIN=\"https://studio.transclusion.org\" -e GOOGLE_OAUTH_CORS_ORIGINS=\"https://studio.transclusion.now.sh,https://studio.transclusion.org,https://studio-mariuslundgard.transclusion.now.sh\" --target production",
-    "test": "sanity check",
-    "now-build": "sanity build"
+    "deploy": "now -e GOOGLE_OAUTH_CLIENT_ID=@google-oauth-client-id -e GOOGLE_OAUTH_CLIENT_SECRET=@google-oauth-client-secret -e ORIGIN=\"https://studio.transclusion.org\" --target production",
+    "format": "prettier-eslint --write \"**/*.js\" \"!node_modules/**\"",
+    "lint": "eslint .",
+    "now-build": "sanity build",
+    "now-dev": "sanity start --port=$PORT",
+    "test": "sanity check"
   },
   "keywords": [
     "sanity"
   ],
   "dependencies": {
     "@sanity/base": "^0.140.32",
+    "@sanity/cli": "^0.140.32",
     "@sanity/code-input": "^0.140.12",
     "@sanity/color-input": "^0.140.3",
     "@sanity/components": "^0.140.32",
@@ -34,6 +39,15 @@
     "sanity-plugin-vision": "^2.0.7"
   },
   "devDependencies": {
-    "@sanity/cli": "^0.140.32"
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-standard-react": "^7.0.2",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^9.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-standard": "^4.0.0",
+    "prettier-eslint-cli": "^4.7.1"
   }
 }
