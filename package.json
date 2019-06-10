@@ -1,6 +1,6 @@
 {
-  "name": "studio",
   "private": true,
+  "name": "studio",
   "version": "1.0.0",
   "description": "",
   "main": "package.json",
