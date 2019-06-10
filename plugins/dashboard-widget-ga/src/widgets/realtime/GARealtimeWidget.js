@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './GARealtimeWidget.css'
-import {openCenteredPopup} from './helpers'
+import {openCenteredPopup} from '../../helpers'
 
 const COLUMN_TITLES = {
   'rt:userType': 'User Type',
@@ -18,7 +18,7 @@ const ROW_VALUES = {
 function GARealtimeWidget (props) {
   const onOpenPopup = evt => {
     evt.preventDefault()
-    openCenteredPopup(evt.target.href, {width: 600, height: 620}, props.onReload)
+    openCenteredPopup(evt.target.href, {width: 600, height: 620}, props.onMessage)
   }
 
   if (props.isLoading) {

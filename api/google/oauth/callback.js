@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
     res.end(
       `<script>
 window.onload = function () {
-  window.opener && window.opener.postMessage({type: 'close'});
+  window.opener && window.opener.postMessage({type: 'signin', tokens: ${JSON.stringify(tokens)}});
 };
 </script>`
     )

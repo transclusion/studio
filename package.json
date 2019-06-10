@@ -12,7 +12,7 @@
     "deploy": "now -e GOOGLE_OAUTH_CLIENT_ID=@google-oauth-client-id -e GOOGLE_OAUTH_CLIENT_SECRET=@google-oauth-client-secret -e ZEIT_OAUTH_CLIENT_ID=@zeit-oauth-client-id -e ZEIT_OAUTH_CLIENT_SECRET=@zeit-oauth-client-secret --target production",
     "format": "prettier-eslint --write \"**/*.js\" \"!node_modules/**\"",
     "lint": "eslint .",
-    "now-build": "sanity build",
+    "_now-build": "sanity build",
     "now-dev": "sanity start --port=$PORT",
     "test": "sanity check"
   },

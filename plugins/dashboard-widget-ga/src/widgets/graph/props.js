@@ -1,31 +1,8 @@
-import {createEventHandler} from 'react-props-stream'
 import {BehaviorSubject, combineLatest, from, of, timer} from 'rxjs'
-import {
-  distinctUntilChanged,
-  map,
-  publishReplay,
-  refCount,
-  startWith,
-  switchMap
-} from 'rxjs/operators'
+import {distinctUntilChanged, map, startWith, switchMap} from 'rxjs/operators'
+import {getTokens$, onMessage} from '../../streams/user'
 
 const POLL_FREQUENCY = 1000 * 60 * 60 // every 1 hour
-
-function getTokens$ (tokensUrl$, loadEvent$) {
-  return combineLatest(tokensUrl$, loadEvent$).pipe(
-    switchMap(([tokensUrl]) =>
-      from(
-        window
-          .fetch(tokensUrl, {credentials: 'include'})
-          .then(res => res.json())
-          .then(data => ({data}))
-          .catch(err => ({error: {message: err.message}}))
-      )
-    ),
-    publishReplay(1),
-    refCount()
-  )
-}
 
 function getReports$ (tokens$, profileId$) {
   const poll$ = timer(0, POLL_FREQUENCY)
@@ -93,7 +70,6 @@ function getElementRect$ () {
 }
 
 export function toPropsStream (props$) {
-  const [reloadEvent$, onReload] = createEventHandler()
   const profileId$ = props$.pipe(
     map(props => props.profileId),
     distinctUntilChanged()
@@ -102,8 +78,7 @@ export function toPropsStream (props$) {
     map(props => props.tokensUrl),
     distinctUntilChanged()
   )
-  const loadEvent$ = reloadEvent$.pipe(startWith(null))
-  const tokens$ = getTokens$(tokensUrl$, loadEvent$)
+  const tokens$ = getTokens$(tokensUrl$)
   const reports$ = getReports$(tokens$, profileId$)
   const {rect$: contentRect$, setElement: setContentElement} = getElementRect$()
 
@@ -113,7 +88,7 @@ export function toPropsStream (props$) {
         contentRect,
         errors: [tokens.error, reports.error].filter(Boolean),
         isLoggedIn: Boolean(tokens.data),
-        onReload: () => onReload(null),
+        onReload: onMessage,
         reports: reports.data,
         setContentElement,
         signinUrl: props.signinUrl,

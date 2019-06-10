@@ -7,12 +7,12 @@
     {
       "name": "part:@sanity/dashboard/widget/ga/graph",
       "implements": "part:@sanity/dashboard/widget",
-      "path": "graph/widget.js"
+      "path": "widgets/graph/widget.js"
     },
     {
       "name": "part:@sanity/dashboard/widget/ga/realtime",
       "implements": "part:@sanity/dashboard/widget",
-      "path": "realtime/widget.js"
+      "path": "widgets/realtime/widget.js"
     }
   ]
 }

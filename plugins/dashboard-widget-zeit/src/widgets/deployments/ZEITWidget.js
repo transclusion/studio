@@ -8,7 +8,7 @@ import differenceInMonths from 'date-fns/difference_in_months'
 import differenceInYears from 'date-fns/difference_in_years'
 import React from 'react'
 import styles from './ZEITWidget.css'
-import {openCenteredPopup} from './helpers'
+import {openCenteredPopup} from '../../helpers'
 
 function dateFormat (d) {
   const now = Date.now()
