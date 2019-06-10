@@ -1,0 +1,25 @@
+@import 'part:@sanity/base/theme/variables-style';
+
+.root {
+  composes: container from "part:@sanity/dashboard/widget-styles";
+}
+
+.header {
+  composes: header from "part:@sanity/dashboard/widget-styles";
+  border-bottom: 1px solid var(--hairline-color);
+}
+
+.title {
+  composes: title from "part:@sanity/dashboard/widget-styles";
+}
+
+.content {
+  @nest & svg {
+    vertical-align: top;
+
+    @nest & path {
+      fill: none;
+      stroke: #000;
+    }
+  }
+}

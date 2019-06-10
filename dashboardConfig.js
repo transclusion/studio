@@ -1,5 +1,35 @@
 export default {
   widgets: [
+    {name: 'structure-menu'},
+    {
+      name: 'zeit/deployments',
+      options: {
+        projectId: 'QmYr8hgzidSZeu2ggUoHAJb2u6wL1tymAwmKiix9Rm74ao',
+        teamId: 'team_ZFbTi9jEAfKNwkjn0KYNtJuo',
+        signinUrl: '/api/zeit/oauth/signin',
+        signoutUrl: '/api/zeit/oauth/signout',
+        tokensUrl: '/api/zeit/oauth/tokens'
+      }
+    },
+    {
+      name: 'zeit/deployments',
+      options: {
+        projectId: 'QmbSuayTqpZsNzst7EywLskxEqcCbTwT2arUUsPGHfcxZ7',
+        teamId: 'team_ZFbTi9jEAfKNwkjn0KYNtJuo',
+        signinUrl: '/api/zeit/oauth/signin',
+        signoutUrl: '/api/zeit/oauth/signout',
+        tokensUrl: '/api/zeit/oauth/tokens'
+      }
+    },
+    {
+      name: 'ga/graph',
+      options: {
+        profileId: 'ga:196245173',
+        signinUrl: '/api/google/oauth/signin',
+        signoutUrl: '/api/google/oauth/signout',
+        tokensUrl: '/api/google/oauth/tokens'
+      }
+    },
     {
       name: 'ga/realtime',
       options: {
@@ -9,7 +39,6 @@ export default {
         tokensUrl: '/api/google/oauth/tokens'
       }
     },
-    {name: 'structure-menu'},
     {
       name: 'project-info',
       options: {

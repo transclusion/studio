@@ -5,5 +5,5 @@ import {toPropsStream} from './props'
 export default {
   name: 'ga/realtime',
   component: withPropsStream(toPropsStream, GARealtimeWidget),
-  layout: {width: 'full'}
+  layout: {width: 'small'}
 }

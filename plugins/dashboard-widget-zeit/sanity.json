@@ -1,0 +1,13 @@
+{
+  "paths": {
+    "source": "./src",
+    "compiled": "./lib"
+  },
+  "parts": [
+    {
+      "name": "part:@sanity/dashboard/widget/zeit",
+      "implements": "part:@sanity/dashboard/widget",
+      "path": "widgets/deployments/widget.js"
+    }
+  ]
+}

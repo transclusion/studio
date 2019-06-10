@@ -27,10 +27,13 @@ function GARealtimeWidget (props) {
 
   if (!props.isLoggedIn) {
     return (
-      <div>
-        <a href={props.signinUrl} target='_blank' onClick={onOpenPopup}>
-          Sign in
-        </a>
+      <div className={styles.root}>
+        <div className={styles.header}>
+          <h3 className={styles.title}>Realtime analytics</h3>
+          <a href={props.signinUrl} target='_blank' onClick={onOpenPopup}>
+            Sign in
+          </a>
+        </div>
       </div>
     )
   }
@@ -65,8 +68,8 @@ function GARealtimeWidget (props) {
                 <tbody>
                   {rows.map((r, idx) => (
                     <tr key={String(idx)}>
-                      {r.map(v => (
-                        <td key={headers[idx].name}>{ROW_VALUES[v] || v}</td>
+                      {r.map((v, vidx) => (
+                        <td key={headers[vidx].name}>{ROW_VALUES[v] || v}</td>
                       ))}
                     </tr>
                   ))}

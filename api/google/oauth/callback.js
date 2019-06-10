@@ -37,6 +37,7 @@ window.onload = function () {
 </script>`
     )
   } catch (err) {
+    console.log(err)
     res.end(
       `<script>
 window.onload = function () {

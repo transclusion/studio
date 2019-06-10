@@ -3,12 +3,13 @@
   "name": "studio",
   "alias": ["studio.transclusion.org"],
   "builds": [
-    { "src": "api/google/oauth/*.js", "use": "@now/node" },
+    { "src": "api/*/oauth/*.js", "use": "@now/node" },
     { "src": "package.json", "use": "@now/static-build" }
   ],
   "routes": [
     { "src": "^/api/(.*)", "dest": "/api/$1.js" },
     { "src": "^/static/(.*)", "dest": "/static/$1" },
+    { "src": "^/__webpack_hmr", "dest": "/__webpack_hmr" },
     { "src": "^/(.*)", "dest": "/index.html" }
   ]
 }

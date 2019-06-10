@@ -5,6 +5,11 @@
   },
   "parts": [
     {
+      "name": "part:@sanity/dashboard/widget/ga/graph",
+      "implements": "part:@sanity/dashboard/widget",
+      "path": "graph/widget.js"
+    },
+    {
       "name": "part:@sanity/dashboard/widget/ga/realtime",
       "implements": "part:@sanity/dashboard/widget",
       "path": "realtime/widget.js"
