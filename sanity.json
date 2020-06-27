@@ -4,8 +4,8 @@
     "name": "Transclusion"
   },
   "api": {
-    "projectId": "ykqc8n2b",
-    "dataset": "production"
+    "projectId": "SANITY_STUDIO_API_PROJECT_ID",
+    "dataset": "SANITY_STUDIO_API_DATASET"
   },
   "plugins": [
     "@sanity/base",
